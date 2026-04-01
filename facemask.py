@@ -4,8 +4,8 @@ import cv2
 # ====================== MODEL PATH ======================
 model = YOLO(r"C:\Users\Prince\Downloads\face mask detector\best.pt")
 
-print("✅ Model loaded!")
-print("Class names in your model:", model.names)   # ← This will tell us the real class names
+print("Model loaded!")
+print("Class names in your model:", model.names)   # This will tell us the real class names
 
 cap = cv2.VideoCapture(0)
 
@@ -23,10 +23,8 @@ while True:
             class_name = model.names[class_id]          # Get real class name
             confidence = float(box.conf[0])
 
-            # Debug: Print every detection to console
             print(f"Detected: {class_name} | Confidence: {confidence:.2f}")
 
-            # === Decide color and label based on ACTUAL class name ===
             if "mask" in class_name.lower() and "without" not in class_name.lower() and "no" not in class_name.lower():
                 color = (0, 255, 0)   # Green - With Mask
                 label = f"With Mask: {confidence:.2f}"
