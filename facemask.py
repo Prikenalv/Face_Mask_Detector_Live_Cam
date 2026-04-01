@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import cv2
 
 # ====================== MODEL PATH ======================
-model = YOLO(r"C:\Users\Prince\Downloads\face mask detector\best.pt")
+model = YOLO(r"model path")
 
 print("Model loaded!")
 print("Class names in your model:", model.names)   # This will tell us the real class names
