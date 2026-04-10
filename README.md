@@ -1,18 +1,66 @@
-# Face-Mask-Detector-Live-Cam
-Face Mask Detection System using YOLOv11
-This project is a real-time face mask detection application developed using YOLOv11 (Ultralytics). The system uses a webcam to detect whether a person is wearing a face mask or not.
+# Face Mask Detection System
 
-# Main Files
+A real-time face mask detection application with two implementations — one using **YOLOv11** and one using **Keras/MobileNetV2** — both running live through a webcam.
 
-facemask.py - This is the main Python script that runs the live face mask detection. It opens the webcam, processes each frame using the trained YOLOv11 model, draws bounding boxes around detected faces, and labels them as "With Mask" (green) or "No Mask" (red) with confidence scores.
+---
 
-best.pt - This is the trained model file (weights) of the YOLOv11 model. It contains all the learned parameters from training on a custom face mask dataset in Google Colab. This file is the core of the detection system and is loaded by the Python script to perform object detection.
+## Project Structure
 
-# How It Works
-The Python script loads the best.pt model and continuously captures video from the webcam. For every frame, YOLOv11 detects faces and classifies them into two classes: with_mask or without_mask. The results are displayed in real-time with colored bounding boxes and text labels.
+```
+Face-Mask-Detection-master/
+│
+├── YOLO/
+│   ├── facemask_yolo.py       # Main script for YOLOv11-based detection
+│   └── best.pt                # Trained YOLOv11 model weights
+│
+├── KERAS/
+│   ├── facemask_keras.py      # Main script for Keras-based detection
+│   └── mask_detector.model    # Trained MobileNetV2 Keras model
+```
 
-# Purpose
-This project demonstrates the integration of deep learning (YOLOv11) with computer vision for a practical application — enforcing face mask compliance. It can be further extended by adding serial communication to control hardware such as LEDs, buzzers, and servo motors in Proteus simulation.
+---
 
-# Status
-On development
+## Implementations
+
+### 1. YOLOv11 (Ultralytics)
+**Folder:** `YOLO/`
+
+The YOLOv11 implementation uses object detection to locate faces in the frame and classify them with bounding boxes in real time.
+
+- **Model:** `best.pt` — trained YOLOv11 weights on a custom face mask dataset
+- **Script:** `facemask_yolo.py` — loads the model, opens the webcam, draws bounding boxes labeled **"With Mask"** (green) or **"No Mask"** (red) with confidence scores
+
+### 2. Keras / MobileNetV2
+**Folder:** `KERAS/`
+
+The Keras implementation uses MobileNetV2 as a base model with a custom classification head, trained using TensorFlow/Keras.
+
+- **Model:** `mask_detector.model` — trained MobileNetV2 model saved in Keras format
+- **Script:** `facemask_keras.py` — loads the model, captures webcam frames, preprocesses each frame, and classifies it as **"with_mask"** or **"without_mask"**
+
+---
+
+## How It Works
+
+Both scripts follow the same general flow:
+
+1. Load the trained model
+2. Open the webcam using OpenCV
+3. Capture frames continuously
+4. Run the model on each frame
+5. Display the result with colored labels in real time
+6. Press **`Q`** to quit
+
+---
+
+## Requirements
+
+```bash
+pip install tensorflow opencv-python ultralytics numpy matplotlib scikit-learn imutils
+```
+
+---
+
+## Status
+
+> **On Development** — planned extension includes serial communication to control hardware such as LEDs, buzzers, and servo motors via Proteus simulation.
