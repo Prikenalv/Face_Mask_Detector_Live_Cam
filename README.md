@@ -36,7 +36,7 @@ The YOLOv11 implementation uses object detection to locate faces in the frame an
 The Keras implementation uses MobileNetV2 as a base model with a custom classification head, trained using TensorFlow/Keras.
 
 - **Model:** `mask_detector.model` — trained MobileNetV2 model saved in Keras format
-- **Script:** `facemask_keras.py` — loads the model, captures webcam frames, preprocesses each frame, and classifies it as **"with_mask"** or **"without_mask"**
+- **Script:** `facemask_keras.py` — loads the model, captures webcam frames, preprocesses each frame, and classifies it as **"Mask_Detected"** or **"No_Mask_Detected"**
 
 ---
 
